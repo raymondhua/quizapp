@@ -1,0 +1,37 @@
+<!-- Page of all players-->
+{% extends 'admin/layout.html' %} 
+{% block title %}Manage users{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>Manage users</h2>
+</header>
+
+{% if messages %}
+{% for message in messages %}
+<label{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</label>
+{% endfor %}
+{% endif %}
+{% if users.count > 0 %}
+<h3>All users</h3>
+<table style="width:100%">
+    <tr>
+        <th>User name</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>User ID</th>
+        <th>View scores</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.id }}</td>
+        <td><a href="{% url 'quiz:score' user.id %}">View {{ user.username }}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h3>No users found</h3>
+{% endif %}
+{% endblock %}

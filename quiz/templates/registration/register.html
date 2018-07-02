@@ -1,0 +1,22 @@
+{% extends 'registration/layout.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>Register</h2>
+    <h3>Enter all fields below</h3>
+</header>
+{% if messages %}
+{% endif %}
+<form class="container" action="{% url 'quiz:register' %}" method="post">
+    {% if messages %}
+    {% for message in messages %}
+    <label{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</label>
+    {% endfor %}
+    {% endif %}
+    {{form}}
+    <p></p>
+    <input type="submit" value="Register" />
+
+</form>
+
+{% endblock %}

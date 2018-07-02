@@ -1,0 +1,9 @@
+<!-- Page for admin, deletes a player-->
+{% extends 'admin/layout.html' %}
+{% block title %}Delete {{ user.username }}?{% endblock %}
+{% block content %}
+<h2>Are you sure you want to delete {{ user.username }}?</h2>
+<form action="{% url 'quiz:delete' user.id %}" method="post">
+    <input type="submit" value="Delete {{ user.username }}" />
+</form>
+{% endblock %}

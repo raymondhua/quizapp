@@ -1,0 +1,33 @@
+<!-- Page for admin, displaying the player and their scores -->
+{% extends 'admin/layout.html' %}
+{% block title %}{{user.username}}'s profile{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>{{user.username}}'s profile</h2>
+</header>
+
+{% if completedTournaments.count > 0 %}
+<h3>Completed tournaments</h3>
+<table style="width:100%">
+    <tr>
+        <th>Tournament name</th>
+        <th>Date completed</th>
+        <th>Score</th>
+    </tr>
+    {% for tournament in completedTournaments %}
+    <tr>
+        <td>{{ tournament.tournament.name }}</td>
+        <td>{{ tournament.date }}</td>
+        <td>{{ tournament.score }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h3>No completed tournaments</h3>
+{% endif %}
+
+<form action="{% url 'quiz:delete' user.id %}" method="get">
+    <input type="submit" value="Delete user" />
+</form>
+
+{% endblock %}

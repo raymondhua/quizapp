@@ -1,0 +1,33 @@
+<!-- Page for admin displaying the player and their scores -->
+{% extends 'admin/layout.html' %} 
+{% block title %}Questions{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>Questions for tournament: {{name}}</h2>
+</header>
+
+{% if allQuestions.count > 0 %}
+<table style="width:100%">
+    <tr>
+        <th>Question no.</th>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Incorrect answers</th>
+    </tr>
+    {% for question in allQuestions %}
+    <tr>
+        <td>{{ question.question_no }}</td>
+        <td>{{ question.question.question_text|safe }}</td>
+        <td>{{ question.correct_answer|safe }}</td>
+        <td>
+        {% for ic in question.split_string %}
+        {{ ic|safe }}<br>
+        {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h4>No questions</h4>
+{% endif %}
+{% endblock %}

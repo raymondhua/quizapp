@@ -1,0 +1,12 @@
+{% extends 'player/layout.html' %}
+{% block title %}Your profile{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>Your profile</h2>
+</header>
+
+<form action="{% url 'quiz:delete' %}" method="get">
+    <input type="submit" value="Delete account" />
+</form>
+
+{% endblock %}

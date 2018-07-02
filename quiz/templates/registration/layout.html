@@ -1,0 +1,8 @@
+{% extends 'layout.html' %} 
+{% block nav %}
+<div class="inner">
+    <p class="logo">Welcome to <strong>Quiz Questions</strong></p>
+    <a href="{% url 'quiz:login' %}">Login</a>
+    <a href="{% url 'quiz:register' %}">Register</a>
+</div>
+{% endblock %}

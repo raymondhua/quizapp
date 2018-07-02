@@ -1,0 +1,32 @@
+{% extends 'player/layout.html' %}
+
+{% block headerTitle %} 
+{% if questionID != 10 %} 
+Tournament: <strong>{{name}}</strong>
+{% else %}
+<strong>GAME OVER!!!</strong>
+{% endif %}
+{% endblock %}
+
+{% block title %}
+{% if questionID != 10 %}
+Answer
+{% else %}
+Game Over!!!
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h2><strong {% if correctOrNot == 'Correct' %} class="correct" {% else %} class="incorrect" {% endif %}>{{correctOrNot|safe}}</strong></h2>
+<h3>The answer was {{answer|safe}}.</h3>
+{% if questionID != 10 %}
+<form action="{% url 'quiz:question' tournamentID nextID %}">
+    <button>Next question</button>
+</form>
+{% else %}
+<h2>You got {{score}} out of 10 correct for tournament: {{name}}!!!</h2>
+<form action="{% url 'quiz:home' %}">
+    <button>Go home</button>
+</form>
+{% endif %}
+{% endblock %}

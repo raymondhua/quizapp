@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block title %}500 - Internal Server Error{% endblock %}
+{% block nav %}
+<p class="logo"></a>Quiz</p>
+<nav id="nav">
+    <a href="{% url 'quiz:home' %}">Home</a>
+</nav>
+{% endblock %}
+{% block content %}
+<h1>500 - Internal Server Error</h1>
+<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
+<a href="{% url 'quiz:home' %}"></a>Go home</a>
+{% endblock %}

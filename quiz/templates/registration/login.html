@@ -1,0 +1,17 @@
+{% extends 'registration/layout.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+ <header class="align-center">
+    <h2>Login</h2>
+</header>
+<form class="container" action="{% url 'quiz:login' %}" method="post">
+    {% if messages %}
+    {% for message in messages %}
+    <label{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</label>
+    {% endfor %}
+    {% endif %}
+    {{form}}
+    <p></p>
+    <input type="submit" value="Login" />
+</form>
+{% endblock %} 

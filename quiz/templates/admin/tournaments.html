@@ -1,0 +1,118 @@
+<!-- Page for admin displaying all tournaments -->
+{% extends 'admin/layout.html' %} 
+{% block title %}Tournaments{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>Tournaments</h2>
+</header>
+
+{% if messages %}
+{% for message in messages %}
+<label{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</label>
+{% endfor %}
+{% endif %}
+{% if allTournaments.count > 0 %}
+<h3>All tournaments</h3>
+<table style="width:100%">
+    <tr>
+        <th>Tournament name</th>
+        <th>Starts at 12:00am...</th>
+        <th>Ends at 11:59pm...</th>
+        <th>Category type</th>
+        <th>Difficulty level</th>
+        <th>Show questions</th>
+    </tr>
+    {% for tournament in allTournaments %}
+    <tr>
+        <td>{{ tournament.name }}</td>
+        <td>{{ tournament.start_date }}</td>
+        <td>{{ tournament.end_date }}</td>
+        <td>{{ tournament.get_category_display }}</td>
+        <td>{{ tournament.get_difficulty_display }}</td>
+        <td><a href="{% url 'quiz:all' tournament.id %}">Show questions</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if activeTournaments.count > 0 %}
+<h4>Active</h4>
+<table style="width:100%">
+    <tr>
+        <th>Tournament name</th>
+        <th>Starts at 12:00am...</th>
+        <th>Ends at 11:59pm...</th>
+        <th>Category type</th>
+        <th>Difficulty level</th>
+        <th>Show questions</th>
+    </tr>
+    {% for tournament in activeTournaments %}
+    <tr>
+        <td>{{ tournament.name }}</td>
+        <td>{{ tournament.start_date }}</td>
+        <td>{{ tournament.end_date }}</td>
+        <td>{{ tournament.get_category_display }}</td>
+        <td>{{ tournament.get_difficulty_display }}</td>
+        <td><a href="{% url 'quiz:all' tournament.id %}">Show questions</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h4>No active tournaments</h4>
+{% endif %}
+
+{% if upcomingTournaments.count > 0 %}
+<h4>Upcoming</h4>
+<table style="width:100%">
+    <tr>
+        <th>Tournament name</th>
+        <th>Starts at 12:00am...</th>
+        <th>Ends at 11:59pm...</th>
+        <th>Category type</th>
+        <th>Difficulty level</th>
+        <th>Show questions</th>
+    </tr>
+    {% for tournament in upcomingTournaments %}
+    <tr>
+        <td>{{ tournament.name }}</td>
+        <td>{{ tournament.start_date }}</td>
+        <td>{{ tournament.end_date }}</td>
+        <td>{{ tournament.get_category_display }}</td>
+        <td>{{ tournament.get_difficulty_display }}</td>
+        <td><a href="{% url 'quiz:all' tournament.id %}">Show questions</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h4>No upcoming tournaments</h4>
+{% endif %}
+
+{% if pastTournaments.count > 0 %}
+<h4>Past</h4>
+<table style="width:100%">
+    <tr>
+        <th>Tournament name</th>
+        <th>Starts at 12:00am...</th>
+        <th>Ends at 11:59pm...</th>
+        <th>Category</th>
+        <th>Difficulty</th>
+        <th>Show questions</th>
+    </tr>
+    {% for tournament in pastTournaments %}
+    <tr>
+        <td>{{ tournament.name }}</td>
+        <td>{{ tournament.start_date }}</td>
+        <td>{{ tournament.end_date }}</td>
+        <td>{{ tournament.get_category_display }}</td>
+        <td>{{ tournament.get_difficulty_display }}</td>
+        <td><a href="{% url 'quiz:all' tournament.id %}">Show questions</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h4>No past tournaments</h4>
+{% endif %}
+
+{% else %}
+<h3>No tournaments - <a href="{% url 'quiz:create' %}">create one here</a></h3>
+{% endif %}
+{% endblock %}

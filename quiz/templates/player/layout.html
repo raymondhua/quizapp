@@ -1,0 +1,10 @@
+{% extends 'layout.html' %} 
+{% block nav %}
+<p class="logo">{% block headerTitle %}You are logged in as: <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>{% endblock %}</p>
+<nav id="nav">
+    <a href="{% url 'quiz:home' %}">Home</a>
+    <a href="{% url 'quiz:score' %}">View high scores</a>
+    <a href="{% url 'quiz:profile' %}">View/edit profile</a>
+    <a href="{% url 'quiz:logout' %}">Logout</a>
+</nav>
+{% endblock %}

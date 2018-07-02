@@ -1,0 +1,27 @@
+{% extends 'player/layout.html' %} 
+{% block title %}Score for past tournaments{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>Score for past tournaments</h2>
+</header>
+{% if completedTournaments.count > 0 %}
+<h3>Past tournaments</h3>
+<table style="width:30%">
+    <tr>
+        <th>Tournament name</th>
+        <th>Date completed</th>
+        <th>Score</th>
+    </tr>
+    {% for tournament in completedTournaments %}
+    <tr>
+        <td>{{ tournament.tournament.name }}</td>
+        <td>{{ tournament.date }}</td>
+        <td>{{ tournament.score }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h3>No completed tournaments</h3>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+<!-- Admin layout page -->
+{% extends 'layout.html' %} 
+{% block nav %}
+<p class="logo"></a>You are logged in as: <strong>{{ request.user }}</strong></p>
+<nav id="nav">
+    <a href="{% url 'quiz:home' %}">Home</a>
+    <a href="{% url 'quiz:create' %}">Create tournament</a>
+    <a href="{% url 'quiz:users' %}">Manage users</a>
+    <a href="{% url 'quiz:score' %}">Show player scores</a>
+    <a href="{% url 'quiz:logout' %}">Logout</a>
+</nav>
+{% endblock %}

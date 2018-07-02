@@ -1,0 +1,20 @@
+<!-- Page for admin user, creating a tournament-->
+{% extends 'admin/layout.html' %} 
+{% block title %}Create tournament{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>Create tournament</h2>
+</header>
+
+<form class="container" action="{% url 'quiz:create' %}" method="post">
+    {% if messages %}
+    {% for message in messages %}
+    <label{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</label>
+    {% endfor %}
+    {% endif %}
+    {{form}}
+    <p></p>
+    <input type="submit" value="Add tournament" />
+</form>
+
+{% endblock %}

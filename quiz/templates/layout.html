@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>{% block title %}Quiz Questions{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+
+<body class="subpage">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            {% block nav %} 
+            <p class="logo"><strong>Quiz Questions</strong></p>
+            <a href="{% url 'quiz:home' %}">Home</a>
+            {% endblock %}
+        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+    </div>
+    </header>
+
+    <!-- Three -->
+    <section id="three" class="wrapper">
+        <div class="inner">
+            {% block content %} {% endblock %}
+        </div>
+    </section>
+
+</body>
+</html>

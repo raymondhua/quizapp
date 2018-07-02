@@ -1,0 +1,88 @@
+{% extends 'player/layout.html' %} 
+{% block title %}Your tournaments{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>Your tournaments</h2>
+</header>
+
+{% if messages %}
+{% for message in messages %}
+<label{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</label>
+{% endfor %}
+{% endif %}
+{% if activeTournaments.count > 0 or savedTournaments.count > 0 %}
+<h3>Active tournaments</h3>
+{% if savedTournaments.count > 0 %}
+<h4>Saved tournaments</h4>
+<table style="width:100%">
+    <tr>
+        <th>Tournament name</th>
+        <th>Ends at 11:59pm...</th>
+        <th>Category type</th>
+        <th>Difficulty level</th>
+        <th>Question</th> 
+        <th>Complete</th>
+    </tr>
+    {% for t in savedTournaments %}
+    <tr>
+        <td>{{ t.tournament.name }}</td>
+        <td>{{ t.tournament.end_date }}</td>
+        <td>{{ t.tournament.get_category_display }}</td>
+        <td>{{ t.tournament.get_difficulty_display }}</td>
+        <td>{{ t.question_no }}</td>
+        <td><a href="{% url 'quiz:question' t.tournament.id t.question_no %}">Click here to complete</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+    {% endif %}
+
+    {% if activeTournaments.count > 0 %}
+    {% if savedTournaments.count > 0 %}
+    <h4>Remaining tournaments</h4>
+    {% endif %}
+    <table style="width:100%">
+        <tr>
+            <th>Tournament name</th>
+            <th>Ends at 11:59pm...</th>
+            <th>Category type</th>
+            <th>Difficulty level</th>
+            <th>Play</th>
+        </tr>
+    {% for tournament in activeTournaments %}
+    <tr>
+        <td>{{ tournament.name }}</td>
+        <td>{{ tournament.end_date }}</td>
+        <td>{{ tournament.get_category_display }}</td>
+        <td>{{ tournament.get_difficulty_display }}</td>
+        <td><a href="{% url 'quiz:question' tournament.id 1 %}">Click here to play</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+{% else %}
+<h3>No active tournaments</h3>
+{% endif %}
+
+{% if upcomingTournaments.count > 0 %}
+<h4>Upcoming tournaments</h4>
+<table style="width:100%">
+    <tr>
+        <th>Tournament name</th>
+        <th>Starts at 12:00am...</th>
+        <th>Ends at 11:59pm...</th>
+        <th>Category type</th>
+        <th>Difficulty level</th>
+    </tr>
+    {% for tournament in upcomingTournaments %}
+    <tr>
+        <td>{{ tournament.name }}</td>
+        <td>{{ tournament.start_date }}</td>
+        <td>{{ tournament.end_date }}</td>
+        <td>{{ tournament.get_category_display }}</td>
+        <td>{{ tournament.get_difficulty_display }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

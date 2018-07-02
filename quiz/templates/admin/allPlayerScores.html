@@ -1,0 +1,34 @@
+<!-- Page of all players scores-->
+{% extends 'admin/layout.html' %} 
+{% block title %}All players completed tournaments{% endblock %}
+{% block content %}
+<header class="align-center">
+    <h2>All players completed tournaments</h2>
+</header>
+{% if allCompletedTournaments.count > 0 %}
+<h3>All completed tournaments</h3>
+<table style="width:100%">
+    <tr>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Tournament name</th>
+        <th>Date completed</th>
+        <th>Score</th>
+    </tr>
+    {% for tournament in allCompletedTournaments %}
+    <tr>
+        <td><a href="{% url 'quiz:score' tournament.user.id %}">{{ tournament.user.username }}</a></td>
+        <td>{{ tournament.user.first_name }}</td>
+        <td>{{ tournament.user.last_name }}</td>
+        <td>{{ tournament.tournament.name }}</td>
+        <td>{{ tournament.date }}</td>
+        <td>{{ tournament.score }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h3>No completed tournaments</h3>
+{% endif %}
+
+{% endblock %}
