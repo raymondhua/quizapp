@@ -1,0 +1,5 @@
+Django
+pyodbc
+django-pyodbc-azure
+requests
+
